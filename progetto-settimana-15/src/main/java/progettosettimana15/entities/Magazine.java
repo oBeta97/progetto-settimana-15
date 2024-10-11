@@ -10,7 +10,7 @@ import java.util.UUID;
 @Table(name = "magazines")
 public class Magazine extends Catalog{
 
-
+    @Enumerated(EnumType.STRING)
     private MagazinePeriodicity periodicity;
 
     public Magazine() {}

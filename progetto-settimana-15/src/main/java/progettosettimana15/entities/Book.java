@@ -10,6 +10,7 @@ import java.util.UUID;
 @Table(name = "books")
 public class Book extends Catalog{
 
+
     private String author;
     @Enumerated(EnumType.STRING)
     private BookGenre genre;
@@ -41,7 +42,7 @@ public class Book extends Catalog{
 
     @Override
     public String toString() {
-        return "Book{" +
+        return super.toString() + "Book{" +
                 ", author='" + author + '\'' +
                 ", genre=" + genre +
                 '}';
