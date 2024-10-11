@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "borrows")
+@NamedQuery(name="expiredBorrows", query = "SELECT b FROM Borrow b WHERE b.deliveryDt IS NULL AND b.endDt <= CURRENT_DATE")
 public class Borrow {
 
     @Id

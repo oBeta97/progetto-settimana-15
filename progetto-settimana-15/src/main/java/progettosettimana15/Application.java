@@ -79,7 +79,7 @@ public class Application {
                     u
                     , b
                     , LocalDate.now().minusYears(f.number().numberBetween(1, 3))
-                    , LocalDate.now().plusMonths(2)
+                    , LocalDate.now().minusMonths(2)
                     , null
             );
 
@@ -90,11 +90,20 @@ public class Application {
 
 
         try{
-            List<Borrow> activeBorrows = bd.getActiveBorrow(2);
-            for(Borrow b : activeBorrows) System.out.println(b);
+            List<Catalog> activeBorrows = bd.getActiveBorrow(2);
+            for(Catalog c : activeBorrows) System.out.println(c);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+
+        try{
+            List<Borrow> expiredBorrows = bd.getExpiredBorrows();
+            for(Borrow b : expiredBorrows) System.out.println(b);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
 
 
         System.out.println("END! :(");
