@@ -32,7 +32,7 @@ public class Magazine extends Catalog{
 
     @Override
     public String toString() {
-        return "Magazine{" +
+        return super.toString() +"Magazine{" +
                 ", periodicity=" + periodicity +
                 '}';
     }

@@ -27,8 +27,7 @@ public class Borrow {
 
     public Borrow() {}
 
-    public Borrow(UUID id, User user, Catalog catalog, LocalDate startDt, LocalDate endDt, LocalDate deliveryDt) {
-        this.id = id;
+    public Borrow( User user, Catalog catalog, LocalDate startDt, LocalDate endDt, LocalDate deliveryDt) {
         this.user = user;
         this.catalog = catalog;
         this.startDt = startDt;

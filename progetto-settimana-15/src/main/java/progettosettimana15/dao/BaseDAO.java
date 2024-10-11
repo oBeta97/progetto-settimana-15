@@ -2,15 +2,26 @@ package progettosettimana15.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+import progettosettimana15.exceptions.NotFoundException;
 
+import java.util.List;
 import java.util.UUID;
 
-public class BaseDAO {
+public abstract class BaseDAO {
 
-    private final EntityManager entityManager;
+    protected final EntityManager entityManager;
 
     public BaseDAO(EntityManager em){
         this.entityManager = em;
+    }
+
+    protected  <T> List<T> executeTypedQuery (Class<T> entityType, TypedQuery<T> tq) throws NotFoundException {
+
+        List<T> res = tq.getResultList();
+        if (res == null) throw new NotFoundException(entityType.getSimpleName() + " non trovato :(");
+
+        return res;
     }
 
     public <T> void save(T obj){
@@ -29,6 +40,14 @@ public class BaseDAO {
     public <T> T getObjectById(Class<T> entityClass, String id) throws Exception {
 
         T found = entityManager.find(entityClass, UUID.fromString(id));
+        if (found == null) throw new Exception("Evento non trovato");
+
+        return found;
+    }
+
+    public <T> T getObjectById(Class<T> entityClass, long id) throws Exception {
+
+        T found = entityManager.find(entityClass, id);
         if (found == null) throw new Exception("Evento non trovato");
 
         return found;
